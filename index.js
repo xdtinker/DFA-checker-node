@@ -1,4 +1,4 @@
-import { firefox } from "playwright-firefox"
+const { firefox } = require("playwright-firefox")
 
 var OK = '\x1b[33m%s\x1b[0m'
 var BAD = '\x1b[31m%s\x1b[0m'
