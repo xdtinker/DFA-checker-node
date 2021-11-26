@@ -7,7 +7,7 @@ async function run(){
   (async () => {
     
     const browser = await firefox.launch({
-      headless: false
+      headless: true
     });
     const context = await browser.newContext();
   
