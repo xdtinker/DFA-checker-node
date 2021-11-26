@@ -2,7 +2,7 @@
   "name": "dfa-node",
   "version": "1.0.0",
   "description": "DFA Checker",
-  "main": "index.js",
+  "main": "index.mjs",
   "type": "module",
   "scripts": {
     "start": "node index.mjs",
