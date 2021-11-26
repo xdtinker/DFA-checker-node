@@ -64,7 +64,7 @@ async function run(){
             }
             else{
               //y(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
-              console.log(OK,`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
+              console.log(OK,`APPOINTMENT AVAILABLE IN ${branch_name}\nDATE: ${available_date}}`)
             }
             await page.selectOption('select#SiteID', {'index' : element});
         }
