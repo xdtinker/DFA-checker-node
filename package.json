@@ -1,0 +1,15 @@
+{
+  "name": "dfa-node",
+  "version": "1.0.0",
+  "description": "DFA Checker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aziz",
+  "license": "ISC",
+  "dependencies": {
+    "playwright-firefox": "^1.16.3"
+  }
+}
