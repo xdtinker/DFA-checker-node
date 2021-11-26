@@ -9,7 +9,7 @@
   },
   "author": "Aziz",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "playwright-firefox": "^1.16.3"
   }
 }
