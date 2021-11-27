@@ -1,0 +1,18 @@
+{
+  "name": "dfa-checker",
+  "version": "1.1.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aziz",
+  "license": "ISC",
+  "dependencies": {
+    "cross-fetch": "^3.1.4",
+    "dotenv": "^10.0.0",
+    "node-telegram-bot-api": "^0.54.0",
+    "playwright-firefox": "^1.16.3"
+  }
+}
