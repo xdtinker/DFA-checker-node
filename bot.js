@@ -32,6 +32,5 @@ bot.onText(/\/sudostart/, (msg) => {
 bot.onText(/\/sudostop/, (msg) => {
     bot.sendMessage(msg.chat.id, "Ending task..");
     checker.stop(false)
-    bot.sendMessage(msg.chat.id, "Task ended.");
     console.log('Task ended.')
     });
