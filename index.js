@@ -50,8 +50,8 @@ class checker{
               await page.isVisible('div.tab-content')
               var branch_index = [3,4,7,24,27,31];
               
-              while(on_task){
-                if(on_task == false){
+              while (true){
+                if(on_task === false){
                   on_task = true
                   break
                 }
@@ -84,9 +84,8 @@ class checker{
     })();
 }
 
-  static stop(end){
-    on_task = end
-    return end
+  static stop(){
+    on_task = false
   }
 }
 
