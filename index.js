@@ -75,6 +75,7 @@ class checker{
           }
           catch(err){
             console.log(BAD ,err)
+            send_log(`Task error.\nReason: ${err}`);
           }
           finally{
             await context.close();
