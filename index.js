@@ -58,7 +58,7 @@ class checker{
                     for (const element of branch_index) {
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
-                        await page.waitForSelector("#next-available-date")
+                        //await page.waitForSelector("#next-available-date")
                         var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                         var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
                         if(available_date.includes("No available date")){
