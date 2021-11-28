@@ -53,6 +53,7 @@ class checker{
               while(on_task){
                 if(on_task == false){
                   on_task = true
+                  send_log('Task ended.')
                   break
                 }
                   for (const element of branch_index) {
