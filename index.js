@@ -80,6 +80,7 @@ class checker{
               await context.close();
               await browser.close();
               send_log('Task ended.')
+              console.log('Task ended.')
             }
     })();
 }
