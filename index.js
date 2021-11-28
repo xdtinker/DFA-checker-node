@@ -53,7 +53,6 @@ class checker{
               while(on_task){
                 if(on_task == false){
                   on_task = true
-                  send_log('Task ended.')
                   break
                 }
                   for (const element of branch_index) {
@@ -80,6 +79,7 @@ class checker{
             finally{
               await context.close();
               await browser.close();
+              send_log('Task ended.')
             }
     })();
 }
