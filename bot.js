@@ -1,5 +1,6 @@
 const TelegramBot = require("node-telegram-bot-api");
-const index = require('./index.js');
+//const checker = require('./index.js');
+const { checker } = require('./index')
 
 const token = "2054859695:AAGVSXp1MRtrAMP0L5g2AML-tBVvwRfxi4o"
 
@@ -25,9 +26,11 @@ bot.onText(/\/status/, (msg) => {
 bot.onText(/\/sudostart/, (msg) => {
     bot.sendMessage(msg.chat.id, "Ok.");
     console.log('Ok')
-    index.run()
+    checker.run()
     });
 
 bot.onText(/\/sudostop/, (msg) => {
     bot.sendMessage(msg.chat.id, "Ending task..");
+    checker.stop(false)
+    console.log('Ok')
     });
