@@ -65,7 +65,7 @@ class checker{
                     break
                   }
                     for (const element of branch_index) {
-                        var date = new Date().toLocaleString().toUpperCase();
+                        var date = new Date().toLocaleString("en-US", {timeZone:"Asia/Manila"});
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
                         var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
