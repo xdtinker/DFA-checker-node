@@ -4,7 +4,8 @@ const { send_log, send_notif} = require('./telegram.js');
 var OK = '\x1b[33m%s\x1b[0m';
 var BAD = '\x1b[31m%s\x1b[0m';
 var on_task = true
-
+var choice = null
+var client_count = ""
 class checker{
   static async run(){
       (async () => {
@@ -22,11 +23,20 @@ class checker{
                 await page.check('input[type="checkbox"]');
                 send_log("Step 1....Passed");
                 console.log(OK,"Step 1....Passed");
-                // Click text=Start Individual Appointment
-                await page.click('text=Start Individual Appointment');
+                if(choice == 1){
+                  // Click text=Start Individual Appointment
+                  await page.click('text=Start Individual Appointment');
+                }
+                else{
+                  // Click text=Start Group Appointment
+                  await page.click('text=Start Group Appointment');
+                  await page.waitForTimeout(2000);
+                  console.log(client_count)
+                  await page.selectOption('#numberOfApplicants' , {'value': String(client_count)});
+                  await page.click('text=Next');
+                }
                 send_log("Step 2....Passed");
                 console.log(OK,"Step 2....Passed");
-                // Select 639
                 await page.waitForTimeout(2000);
                 //await page.click('#SiteID')
                 await page.selectOption('#SiteID' , {'index':1});
@@ -45,8 +55,7 @@ class checker{
                 console.log(OK,"Step 5....Passed");
                 
                 await page.waitForTimeout(5000);
-                
-              
+                       
                 await page.isVisible('div.tab-content')
                 var branch_index = [3,4,7,24,27,31];
                 
@@ -56,7 +65,7 @@ class checker{
                     break
                   }
                     for (const element of branch_index) {
-                        var date = new Date().toLocaleString('de-DE', {hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Manila'})
+                        var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
                         var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
@@ -75,7 +84,6 @@ class checker{
           }
           catch(err){
             console.log(BAD ,err)
-            send_log(`Task error.\nReason: ${err}`);
           }
           finally{
             await context.close();
@@ -87,6 +95,13 @@ class checker{
 
   static stop(){
     on_task = false
+  }
+  static individual(){
+    choice = 1
+  }
+  static group(count){
+    choice = 2
+    client_count = count
   }
 }
 
