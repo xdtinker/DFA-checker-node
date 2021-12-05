@@ -37,7 +37,8 @@ bot.onText(/\/start/, (msg) => {
 bot.on('message', (msg) => {
     var indv = "individual";
     if (msg.text.toString().toLowerCase().includes(indv)) {
-        bot.sendMessage(msg.chat.id, "Appointment Type: Individual\nTask loading..");
+        bot.sendMessage(msg.chat.id, "Appointment Type: Individual");
+        bot.sendMessage(msg.chat.id, "Task running..");
         checker.individual()
         checker.run()
     }
@@ -53,7 +54,9 @@ bot.on('message', (msg) => {
     }
     var count = ['2', '3', '4', '5']
     if (count.includes(msg.text.toString())) {
-        bot.sendMessage(msg.chat.id, "Appointment Type: Group\nTask loading..");
+        bot.sendMessage(msg.chat.id, "Appointment Type: Group");
+        bot.sendMessage(msg.chat.id, "Number of client: " + msg.text);
+        bot.sendMessage(msg.chat.id, "Task running..");
         checker.group(msg.text)
         checker.run()
     }
