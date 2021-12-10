@@ -65,6 +65,7 @@ class checker{
                     break
                   }
                     for (const element of branch_index) {
+                        await page.selectOption('select#SiteID', {'index' : element});
                         var date = new Date().toLocaleString("en-US", {timeZone:"Asia/Manila"});
                         await page.waitForTimeout(300);
                         await page.waitForSelector("#next-available-date")
@@ -78,7 +79,7 @@ class checker{
                           send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                           console.log(OK,`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
                         }
-                        await page.selectOption('select#SiteID', {'index' : element});
+                        
                   }
               }
           }
