@@ -47,7 +47,7 @@ class checker{
                 await page.waitForTimeout(1000);
                 // Click #pubpow-notif >> text=Please check if you agree
                 //await page.check('input[name="pubpow-notif-checkbox"]');
-                await page.check('#pubpow-notif-checkbox');
+                await page.click('#pubpow-notif-checkbox');
                 send_log("Step 4....Passed");
                 console.log(OK,"Step 4....Passed");
               
