@@ -16,6 +16,7 @@ class checker{
             // Open new page
             const page = await context.newPage();
             try{
+                if(!on_task) throw send_log("Restart the process using /start")
                 await page.goto('https://www.passport.gov.ph/appointment');
               
                 await page.waitForTimeout(2000);
@@ -43,9 +44,10 @@ class checker{
                 send_log("Step 3....Passed");
                 console.log(OK,"Step 3....Passed");
                 //assert.equal(page.url(), 'https://www.passport.gov.ph/appointment/individual/site');
-                await page.waitForTimeout(2000);
+                await page.waitForTimeout(1000);
                 // Click #pubpow-notif >> text=Please check if you agree
-                await page.check('input[name="pubpow-notif-checkbox"]');
+                //await page.check('input[name="pubpow-notif-checkbox"]');
+                await page.check('#pubpow-notif-checkbox');
                 send_log("Step 4....Passed");
                 console.log(OK,"Step 4....Passed");
               
@@ -53,10 +55,10 @@ class checker{
                 await page.click('text=Next');
                 send_log("Step 5....Passed");
                 console.log(OK,"Step 5....Passed");
-                
-                await page.waitForTimeout(5000);
                        
-                await page.isVisible('div.tab-content')
+                await page.isHidden('.oas-loading')
+
+                await page.waitForTimeout(2000)
                 var branch_index = [3,4,7,24,27,31];
                 
                 while (true){
@@ -65,10 +67,9 @@ class checker{
                     break
                   }
                     for (const element of branch_index) {
-                        await page.selectOption('select#SiteID', {'index' : element});
-                        var date = new Date().toLocaleString("en-US", {timeZone:"Asia/Manila"});
-                        await page.waitForTimeout(300);
-                        await page.waitForSelector("#next-available-date")
+                        var date = new Date().toLocaleString().toUpperCase();
+                        await page.waitForTimeout(500);
+                        //await page.waitForSelector("#next-available-date")
                         var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                         var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
                         if(available_date.includes("No available date")){
@@ -79,7 +80,7 @@ class checker{
                           send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                           console.log(OK,`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
                         }
-                        
+                        await page.selectOption('select#SiteID', {'index' : element});
                   }
               }
           }
