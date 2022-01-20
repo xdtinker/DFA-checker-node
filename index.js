@@ -18,7 +18,7 @@ class checker{
             try{
                 if(!on_task) throw send_log("Restart the process using /start")
                 await page.goto('https://www.passport.gov.ph/appointment');
-              
+                send_log("Browser started");
                 await page.waitForTimeout(2000);
                 // Check input[type="checkbox"]
                 await page.check('input[type="checkbox"]');
@@ -47,7 +47,7 @@ class checker{
                 await page.waitForTimeout(1000);
                 // Click #pubpow-notif >> text=Please check if you agree
                 //await page.check('input[name="pubpow-notif-checkbox"]');
-                await page.click('#pubpow-notif-checkbox');
+                await page.click('label[for="pubpow-notif-checkbox"]');
                 send_log("Step 4....Passed");
                 console.log(OK,"Step 4....Passed");
               
