@@ -44,7 +44,7 @@ class checker{
                 send_log("Step 3....Passed");
                 // console.log(OK,"Step 3....Passed");
                 //assert.equal(page.url(), 'https://www.passport.gov.ph/appointment/individual/site');
-                await page.waitForTimeout(1000);
+                await page.waitForTimeout(2000);
                 // Click #pubpow-notif >> text=Please check if you agree
                 //await page.check('input[name="pubpow-notif-checkbox"]');
                 await page.click('label[for="pubpow-notif-checkbox"]');
