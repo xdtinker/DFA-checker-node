@@ -15,7 +15,7 @@ class checker{
             const context = await browser.newContext();
             // Open new page
             const page = await context.newPage();
-            if(!on_task) throw send_log("Restart the process using /start")
+       
             try{
                 await page.goto('https://www.passport.gov.ph/appointment');
                 send_log("Browser started");
