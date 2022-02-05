@@ -56,10 +56,11 @@ class checker {
                 console.log(OK, "Step 5....Passed");
 
 
-                send_log("You will be notified when there is available appointment at @DFAPassport_bot");
+                
                 await page.isHidden('.oas-loading')
-
+         
                 await page.waitForTimeout(2000)
+                send_log("You will be notified when there is available appointment at @DFAPassport_bot");
                 var branch_index = [3, 4, 7, 24, 27, 31];
 
                 while (true) {
