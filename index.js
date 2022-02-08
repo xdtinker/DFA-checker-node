@@ -68,8 +68,8 @@ class checker {
                 let kill_count = 0
                 while (true) {
                     kill_count += 3
-                    if (kill_count >= 12) {
-                        throw Error("Time limit Exceeded, Dyno will restart")
+                    if (kill_count >= 3600) {
+                        throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
                     }
                     if (on_task === false) {
                         on_task = true
