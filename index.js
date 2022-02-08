@@ -72,6 +72,7 @@ class checker {
                     for (const element of branch_index) {
                         if (count === 10) process.exit(0)
                         count += 0.5
+                         console.log(count)
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
