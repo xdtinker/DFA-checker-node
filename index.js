@@ -81,20 +81,20 @@ class checker {
                         var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
                         if (available_date.includes("No available date")) {
                             // send_log(`NO APPOINTMENT AVAILABLE\n\n${branch_name}\n\n\nStatus: ${available_date}\n\n${date}`)
-                            console.log(BAD, `NO APPOINTMENT AVAILABLE IN ${branch_name}`)
+                            console.log(`NO APPOINTMENT AVAILABLE IN ${branch_name}`)
                         } else {
                             send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
-                            console.log(OK, `APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
+                            console.log(`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
                         }
                     }
                 }
             } catch (e) {
                 send_log(e.message)
-                console.log(BAD, e)
+                console.log(e)
             } finally {
                 await context.close();
                 await browser.close();
-                console.log(BAD, `Task ended.`)
+                console.log(`Task ended.`)
                 send_log('Task ended.')
                 process.exit(0)
             }
