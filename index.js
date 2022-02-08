@@ -62,7 +62,11 @@ class checker {
                 await page.waitForTimeout(2000)
                 var branch_index = [3, 4, 7, 24, 27, 31];
 
-                while (true) {
+                let kill_count = 0
+                while (kill_count !== 12) {
+                    console.log(kill_count);
+                    kill_count += 3
+                    if (kill_count == 9) break
                     if (on_task === false) {
                         on_task = true
                         break
@@ -90,6 +94,7 @@ class checker {
                 await browser.close();
                 console.log(BAD, `Task ended.`)
                 send_log('Task ended.')
+                process.exit(0)
             }
         })();
     }
