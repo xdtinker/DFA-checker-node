@@ -67,8 +67,8 @@ class checker {
                     console.log(kill_count);
                     kill_count += 3
                     if (kill_count > 12){
-                         
-                         throw Error("Time limit Exceeded, Dyno will restart");
+                         //send_log("Time limit Exceeded, Dyno will restart");
+                         throw new Error("Time limit Exceeded, Dyno will restart");
                     }
                     if (on_task === false) {
                         on_task = true
@@ -90,9 +90,9 @@ class checker {
                         await page.selectOption('select#SiteID', { 'index': element });
                     }
                 }
-            } catch (err) {
-                send_log('Cause: ',err)
-                console.log(BAD, err)
+            } catch (e) {
+                send_log(e)
+                console.log(BAD, e)
             } finally {
                 await context.close();
                 await browser.close();
