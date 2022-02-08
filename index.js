@@ -68,10 +68,15 @@ class checker {
                         break
                     }
 
-                    var timer = 0
                     for (const element of branch_index) {
-                        if (timer === 10) process.exit(0)
-                        timer += 0.5
+                        var timer = 0
+                        if (timer !== 10){
+                            timer += 0.5
+                        }
+                        else{
+                            process.exit(0)
+                        }
+                        console.log(timer)
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
