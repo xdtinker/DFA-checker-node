@@ -63,7 +63,7 @@ class checker {
                 
                 send_log("You will be notified when there is available appointment at @DFAPassport_bot");
                 
-                var branch_index = [3, 4, 7, 24, 27, 31];
+                var branch_index = [3, 4, 7, 24, 27, 31, 43];
 
                 let kill_count = 0
                 while (true) {
