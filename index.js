@@ -56,25 +56,27 @@ class checker {
                 console.log(OK, "5/5....Passed");
 
 
-                send_log("You will be notified when there is available appointment at @DFAPassport_bot");
+                
                 await page.isHidden('.oas-loading')
 
                 await page.waitForTimeout(2000)
+                
+                send_log("You will be notified when there is available appointment at @DFAPassport_bot");
+                
                 var branch_index = [3, 4, 7, 24, 27, 31];
 
                 let kill_count = 0
                 while (true) {
-                    console.log(kill_count);
                     kill_count += 3
-                    if (kill_count > 12){
-                         //send_log("Time limit Exceeded, Dyno will restart");
-                         throw new Error("Time limit Exceeded, Dyno will restart");
+                    if (kill_count >= 12) {
+                        throw Error("Time limit Exceeded, Dyno will restart")
                     }
                     if (on_task === false) {
                         on_task = true
                         break
                     }
                     for (const element of branch_index) {
+                        await page.selectOption('select#SiteID', { 'index': element });
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
@@ -84,14 +86,13 @@ class checker {
                             // send_log(`NO APPOINTMENT AVAILABLE\n\n${branch_name}\n\n\nStatus: ${available_date}\n\n${date}`)
                             console.log(BAD, `NO APPOINTMENT AVAILABLE IN ${branch_name}`)
                         } else {
-                            send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
+                            //send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                             console.log(OK, `APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
                         }
-                        await page.selectOption('select#SiteID', { 'index': element });
                     }
                 }
             } catch (e) {
-                send_log(e)
+                send_log(e.message)
                 console.log(BAD, e)
             } finally {
                 await context.close();
