@@ -22,8 +22,8 @@ class checker {
                 await page.waitForTimeout(2000);
                 // Check input[type="checkbox"]
                 await page.check('input[type="checkbox"]');
-                send_log("Step 1....Passed");
-                console.log(OK, "Step 1....Passed");
+                send_log("1/5....Passed");
+                console.log(OK, "1/5....Passed");
                 if (choice == 1) {
                     // Click text=Start Individual Appointment
                     await page.click('text=Start Individual Appointment');
@@ -35,32 +35,31 @@ class checker {
                     await page.selectOption('#numberOfApplicants', { 'value': String(client_count) });
                     await page.click('text=Next');
                 }
-                send_log("Step 2....Passed");
-                console.log(OK, "Step 2....Passed");
+                send_log("2/5....Passed");
+                console.log(OK, "2/5....Passed");
                 await page.waitForTimeout(2000);
                 //await page.click('#SiteID')
                 await page.selectOption('#SiteID', { 'index': 1 });
-                send_log("Step 3....Passed");
-                console.log(OK, "Step 3....Passed");
+                send_log("3/5....Passed");
+                console.log(OK, "3/5....Passed");
                 //assert.equal(page.url(), 'https://www.passport.gov.ph/appointment/individual/site');
                 await page.waitForTimeout(2000);
                 // Click #pubpow-notif >> text=Please check if you agree
                 //await page.check('input[name="pubpow-notif-checkbox"]');
                 await page.click('label[for="pubpow-notif-checkbox"]');
-                send_log("Step 4....Passed");
-                console.log(OK, "Step 4....Passed");
+                send_log("4/5....Passed");
+                console.log(OK, "4/5....Passed");
 
                 // Click text=Next
                 await page.click('text=Next');
-                send_log("Step 5....Passed");
-                console.log(OK, "Step 5....Passed");
+                send_log("5/5....Passed");
+                console.log(OK, "5/5....Passed");
 
 
-                
-                await page.isHidden('.oas-loading')
-         
-                await page.waitForTimeout(2000)
                 send_log("You will be notified when there is available appointment at @DFAPassport_bot");
+                await page.isHidden('.oas-loading')
+
+                await page.waitForTimeout(2000)
                 var branch_index = [3, 4, 7, 24, 27, 31];
 
                 while (true) {
@@ -68,11 +67,11 @@ class checker {
                         on_task = true
                         break
                     }
-                    var count = 0
+
+                    var timer = 0
                     for (const element of branch_index) {
-                        if (count === 10) process.exit(0)
-                        count += 0.5
-                         console.log(count)
+                        if (timer === 10) process.exit(0)
+                        timer += 0.5
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
