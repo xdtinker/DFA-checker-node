@@ -83,7 +83,7 @@ class checker {
                             // send_log(`NO APPOINTMENT AVAILABLE\n\n${branch_name}\n\n\nStatus: ${available_date}\n\n${date}`)
                             console.log(BAD, `NO APPOINTMENT AVAILABLE IN ${branch_name}`)
                         } else {
-                            //send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
+                            send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                             console.log(OK, `APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
                         }
                     }
