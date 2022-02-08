@@ -68,7 +68,10 @@ class checker {
                         on_task = true
                         break
                     }
+                    var count = 0
                     for (const element of branch_index) {
+                        if (count === 10) process.exit(0)
+                        count += 0.5
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
                         //await page.waitForSelector("#next-available-date")
