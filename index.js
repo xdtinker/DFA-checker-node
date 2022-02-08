@@ -67,12 +67,13 @@ class checker {
 
                 let kill_count = 0
                 while (true) {
-                    kill_count += 3
-                    if (kill_count >= 3600) throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
-
                     if (on_task === false) break
                     
-                    for (const element of branch_index) {
+                    for (const element of branch_index) {         
+                        
+                        kill_count += .5
+                        if (kill_count >= 3600) throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
+                        
                         await page.selectOption('select#SiteID', { 'index': element });
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
@@ -92,10 +93,9 @@ class checker {
                 send_log(e.message)
                 console.log(e)
             } finally {
+                console.log('Exit Status: 1')
                 await context.close();
                 await browser.close();
-                console.log(`Task ended.`)
-                send_log('Task ended.')
                 process.exit(0)
             }
         })();
