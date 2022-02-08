@@ -67,8 +67,8 @@ class checker {
                     console.log(kill_count);
                     kill_count += 3
                     if (kill_count > 12){
-                         send_log('Time Limit Exceeded')
-                         throw err("Time limit Exceeded, Dyno will restart");
+                         
+                         throw Error("Time limit Exceeded, Dyno will restart");
                     }
                     if (on_task === false) {
                         on_task = true
@@ -91,6 +91,7 @@ class checker {
                     }
                 }
             } catch (err) {
+                send_log('Cause: ',err)
                 console.log(BAD, err)
             } finally {
                 await context.close();
