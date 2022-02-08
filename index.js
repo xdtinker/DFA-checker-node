@@ -73,7 +73,7 @@ class checker {
                     for (const element of branch_index) {         
                         
                         kill_count += .5
-                        if (kill_count >= 3600) throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
+                        if (kill_count >= 3000) throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
                         
                         await page.selectOption('select#SiteID', { 'index': element });
                         var date = new Date().toLocaleString().toUpperCase();
