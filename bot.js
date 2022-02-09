@@ -16,9 +16,9 @@ bot.onText(/\/status/, (msg) => {
     });
 
 bot.onText(/\/stop/, (msg) => {
-    bot.sendMessage(msg.chat.id, "Ending task..");
+    bot.sendMessage(msg.chat.id, "Task Terminated");
     checker.stop()
-    console.log('Ok')
+    console.log('TASK ENDED : OK')
     });
 
 
