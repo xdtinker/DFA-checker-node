@@ -19,7 +19,7 @@ async function main() {
                 countdown -= 1000;
                 var min = Math.floor(countdown / (60 * 1000));
                 var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
-                if (countdown <= 0) {
+                if (countdown < 0) {
                     clearInterval(timerId)
                     send_notif(`Checker has reached it's time limit, app will automatically restart __Passport`)
                     throw Error(`Checker has reached it's time limit, app will automatically restart`)
@@ -77,7 +77,7 @@ async function main() {
                     while (true) {
                         if (await page.isVisible('#next-available-date')) break
                         console.log("Date is not visible, retrying");
-                        await page.waitForTimeout(100)
+                        await page.waitForTimeout(200)
                     }
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
