@@ -60,7 +60,7 @@ async function main() {
 
             send_log("You will be notified when there is available appointment at @DFAPassport_bot");
 
-            var branch_index = [3, 4, 7, 24, 27, 31]
+            var branch_index = [3, 4, 7, 24, 27, 31, 43]
                 //var branch_index = [23, 43]
             while (true) {
                 for (const element of branch_index) {
