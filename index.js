@@ -3,7 +3,7 @@ const { send_log, send_notif } = require('./telegram.js');
 
 var OK = '\x1b[33m%s\x1b[0m';
 // var BAD = '\x1b[31m%s\x1b[0m';
-
+send_log("APP START");
 async function main() {
     (async() => {
         const browser = await firefox.launch({
