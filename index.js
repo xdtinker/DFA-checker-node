@@ -14,7 +14,7 @@ async function main() {
         const page = await context.newPage();
 
         try {
-            var countdown = 50 * 60 * 1000;
+            var countdown = 40 * 60 * 1000;
             var timerId = setInterval(function() {
                 countdown -= 1000;
                 var min = Math.floor(countdown / (60 * 1000));
