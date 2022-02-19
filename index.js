@@ -44,9 +44,18 @@ async function main() {
             //send_log("3/5....Passed");
             console.log(OK, "3/5....Passed");
 
-            await page.waitForTimeout(2000);
+            while (true) {
+                await page.waitForTimeout(1000)
+                if (await page.isVisible('#pubpow-notif')) {
+                    console.log('Element found!');
+                    break
+                } else {
+                    await page.selectOption('#SiteID', { 'index': 1 });
+                    console.log('Retrying');
+                }
+            }
 
-            await page.click('label[for="pubpow-notif-checkbox"]');
+            await page.check('#pubpow-notif-checkbox');
             //send_log("4/5....Passed");
             console.log(OK, "4/5....Passed");
 
@@ -64,9 +73,9 @@ async function main() {
                 //var branch_index = [23, 43]
             while (true) {
                 for (const element of branch_index) {
+                    await page.waitForTimeout(500);
                     await page.selectOption('select#SiteID', { 'index': element });
                     var date = new Date().toLocaleString().toUpperCase();
-                    await page.waitForTimeout(500);
                     //await page.waitForSelector("#next-available-date")
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
