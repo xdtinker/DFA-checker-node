@@ -75,7 +75,6 @@ async function main() {
                     while (true) {
                         if (await page.isVisible('#next-available-date')) break
                         console.log("Date is not visible, retrying");
-                        await page.waitForTimeout(200)
                     }
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
@@ -85,8 +84,9 @@ async function main() {
                     } else {
                         send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                         console.log(`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
-                        await page.waitForTimeout(1000)
+                        //await page.waitForTimeout(1000)
                     }
+                    await page.waitForTimeout(500)
                 }
             }
         } catch (e) {
