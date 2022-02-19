@@ -41,7 +41,7 @@ async function main() {
             await page.waitForTimeout(2000);
 
             await page.selectOption('#SiteID', { 'index': 1 });
-            send_log("3/5....Passed");
+            //send_log("3/5....Passed");
             console.log(OK, "3/5....Passed");
 
             await page.waitForTimeout(2000);
