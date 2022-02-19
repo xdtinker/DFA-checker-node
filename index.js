@@ -1,9 +1,7 @@
 const { firefox } = require("playwright-firefox");
 const { send_log, send_notif } = require('./telegram.js');
 
-var OK = '\x1b[33m%s\x1b[0m';
-// var BAD = '\x1b[31m%s\x1b[0m';
-send_log("Passport: APP Initializing");
+
 async function main() {
     (async() => {
         const browser = await firefox.launch({
@@ -14,7 +12,7 @@ async function main() {
         const page = await context.newPage();
 
         try {
-            var countdown = 30 * 60 * 1000;
+            var countdown = 20 * 60 * 1000;
             var timerId = setInterval(function() {
                 countdown -= 1000;
                 var min = Math.floor(countdown / (60 * 1000));
@@ -32,17 +30,17 @@ async function main() {
 
             await page.check('input[type="checkbox"]');
             //send_log("1/5....Passed");
-            console.log(OK, "1/5....Passed");
+            console.log("1/5....Passed");
 
             await page.click('text=Start Individual Appointment');
 
             //send_log("2/5....Passed");
-            console.log(OK, "2/5....Passed");
+            console.log("2/5....Passed");
             await page.waitForTimeout(2000);
 
             await page.selectOption('#SiteID', { 'index': 1 });
             //send_log("3/5....Passed");
-            console.log(OK, "3/5....Passed");
+            console.log("3/5....Passed");
 
             while (true) {
                 await page.waitForTimeout(1000)
@@ -57,11 +55,11 @@ async function main() {
 
             await page.check('#pubpow-notif-checkbox');
             //send_log("4/5....Passed");
-            console.log(OK, "4/5....Passed");
+            console.log("4/5....Passed");
 
             await page.click('text=Next');
             //send_log("5/5....Passed");
-            console.log(OK, "5/5....Passed");
+            console.log("5/5....Passed");
 
             await page.isHidden('.oas-loading')
 
