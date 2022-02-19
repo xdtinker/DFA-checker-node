@@ -1,6 +1,6 @@
 const { firefox } = require("playwright-firefox");
 const { send_log, send_notif } = require('./telegram.js');
-
+var OK = '\x1b[33m%s\x1b[0m';
 var on_task = true
 var choice = null
 var client_count = ""
