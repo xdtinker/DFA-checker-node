@@ -118,4 +118,8 @@ class checker {
     }
 }
 
+if (require.main === module) {
+    main();
+}
+
 module.exports = { checker }
