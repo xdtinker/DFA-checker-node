@@ -19,7 +19,7 @@ async function main() {
                 var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
                 if (countdown < 0) {
                     clearInterval(timerId)
-                    send_notif(`Checker has reached it's time limit, app will automatically restart __Passport`)
+                    //send_notif(`Checker has reached it's time limit, app will automatically restart __Passport`)
                     throw Error(`Checker has reached it's time limit, app will automatically restart`)
                 }
             }, 1000);
