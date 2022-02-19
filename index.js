@@ -1,8 +1,6 @@
 const { firefox } = require("playwright-firefox");
 const { send_log, send_notif } = require('./telegram.js');
 
-var OK = '\x1b[33m%s\x1b[0m';
-var BAD = '\x1b[31m%s\x1b[0m';
 var on_task = true
 var choice = null
 var client_count = ""
@@ -17,6 +15,18 @@ class checker {
             const page = await context.newPage();
             if (!on_task) on_task = true
             try {
+                var countdown = 50 * 60 * 1000;
+                var timerId = setInterval(function() {
+                    countdown -= 1000;
+                    var min = Math.floor(countdown / (60 * 1000));
+                    var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+                    if (countdown <= 0) {
+                        clearInterval(timerId)
+                        send_notif(`Time limit exceeded, app will automatically restart __Passport`)
+                        throw Error(`Time limit exceeded, app will automatically restart`)
+                    }
+                }, 1000);
+                
                 await page.goto('https://www.passport.gov.ph/appointment');
                 send_log("Running System checks.");
                 await page.waitForTimeout(2000);
@@ -63,18 +73,12 @@ class checker {
                 
                 send_log("You will be notified when there is available appointment at @DFAPassport_bot");
                 
-                var branch_index = [3, 4, 7, 24, 27, 31]
+                var branch_index = [3, 4, 7, 24, 27, 31, 43]
                 //var branch_index = [23, 43]
 
-                let kill_count = 0
                 while (true) {
                     if (on_task === false) break
-                    
-                    for (const element of branch_index) {         
-                        
-                        kill_count += .5
-                        if (kill_count >= 3000) throw Error("Time limit Exceeded, Dyno will restart \nUse /start command to restart task")
-                        
+                    for (const element of branch_index) {                
                         await page.selectOption('select#SiteID', { 'index': element });
                         var date = new Date().toLocaleString().toUpperCase();
                         await page.waitForTimeout(500);
