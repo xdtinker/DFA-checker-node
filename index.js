@@ -75,9 +75,9 @@ async function main() {
                     await page.selectOption('select#SiteID', { 'index': element });
                     var date = new Date().toLocaleString().toUpperCase();
                     while (true) {
-                        await page.waitForTimeout(100)
                         if (await page.isVisible('#next-available-date')) break
                         console.log("Date is not visible, retrying");
+                        await page.waitForTimeout(100)
                     }
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
