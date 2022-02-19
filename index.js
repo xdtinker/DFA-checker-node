@@ -70,21 +70,24 @@ async function main() {
             //send_log("You will be notified when there is available appointment at @DFAPassport_bot");
 
             var branch_index = [3, 4, 7, 24, 27, 31, 43]
-                //var branch_index = [23, 43]
             while (true) {
                 for (const element of branch_index) {
-                    await page.waitForTimeout(500);
                     await page.selectOption('select#SiteID', { 'index': element });
                     var date = new Date().toLocaleString().toUpperCase();
-                    //await page.waitForSelector("#next-available-date")
+                    while (true) {
+                        await page.waitForTimeout(100)
+                        if (await page.isVisible('#next-available-date')) break
+                        console.log("Date is not visible, retrying");
+                    }
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
-                    if (available_date.includes("No available date")) {
+                    if (available_date === 'No available date') {
                         // send_log(`NO APPOINTMENT AVAILABLE\n\n${branch_name}\n\n\nStatus: ${available_date}\n\n${date}`)
-                        console.log(`NO APPOINTMENT AVAILABLE IN ${branch_name}`)
+                        console.log(`Status: ${available_date} in ${branch_name}`)
                     } else {
                         send_notif(`APPOINTMENT AVAILABLE!!\n\n${branch_name}\n\n\nAvailable date: ${available_date}\n\n${date}`)
                         console.log(`APPOINTMENT AVAILABLE IN ${branch_name} DATE: ${available_date}}`)
+                        await page.waitForTimeout(1000)
                     }
                 }
             }
