@@ -27,16 +27,16 @@ async function main() {
             }, 1000);
 
             await page.goto('https://www.passport.gov.ph/appointment');
-            send_log("Running System checks.");
+            //send_log("Running System checks.");
             await page.waitForTimeout(2000);
 
             await page.check('input[type="checkbox"]');
-            send_log("1/5....Passed");
+            //send_log("1/5....Passed");
             console.log(OK, "1/5....Passed");
 
             await page.click('text=Start Individual Appointment');
 
-            send_log("2/5....Passed");
+            //send_log("2/5....Passed");
             console.log(OK, "2/5....Passed");
             await page.waitForTimeout(2000);
 
@@ -47,18 +47,18 @@ async function main() {
             await page.waitForTimeout(2000);
 
             await page.click('label[for="pubpow-notif-checkbox"]');
-            send_log("4/5....Passed");
+            //send_log("4/5....Passed");
             console.log(OK, "4/5....Passed");
 
             await page.click('text=Next');
-            send_log("5/5....Passed");
+            //send_log("5/5....Passed");
             console.log(OK, "5/5....Passed");
 
             await page.isHidden('.oas-loading')
 
             await page.waitForTimeout(2000)
 
-            send_log("You will be notified when there is available appointment at @DFAPassport_bot");
+            //send_log("You will be notified when there is available appointment at @DFAPassport_bot");
 
             var branch_index = [3, 4, 7, 24, 27, 31, 43]
                 //var branch_index = [23, 43]
