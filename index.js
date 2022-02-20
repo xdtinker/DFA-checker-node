@@ -70,12 +70,13 @@ async function main() {
             var branch_index = [3, 4, 7, 24, 27, 31, 43]
             while (true) {
                 for (const element of branch_index) {
+                    await Promise.all([
+                        page.isHidden('.oas-loading'),
+                        page.waitForSelector('#next-available-date', { state: 'visible' })
+                    ]);
                     await page.selectOption('select#SiteID', { 'index': element });
                     var date = new Date().toLocaleString().toUpperCase();
-                    while (true) {
-                        if (await page.isVisible('#next-available-date')) break
-                        console.log("Date is not visible, retrying");
-                    }
+                    
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
                     if (available_date === 'No available date') {
@@ -93,7 +94,7 @@ async function main() {
             send_log(e.message)
             console.log(e)
         } finally {
-            console.log('Exit Status: 1')
+            console.log('Exit Status: Finally')
             await context.close();
             await browser.close();
             process.exit(0)
