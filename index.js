@@ -79,7 +79,7 @@ async function main() {
                     
                     var available_date = await page.$eval("#next-available-date", date_status => date_status.textContent)
                     var branch_name = await page.$eval('#SiteID', sel => sel.options[sel.options.selectedIndex].textContent)
-                    if (available_date === 'No available date') {
+                    if (available_date.includes("No available date")) {
                         // send_log(`NO APPOINTMENT AVAILABLE\n\n${branch_name}\n\n\nStatus: ${available_date}\n\n${date}`)
                         console.log(`Status: ${available_date} in ${branch_name}`)
                     } else {
